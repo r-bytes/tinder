@@ -1,19 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import TinderCard from "react-tinder-card";
 import { TinderCardStyle } from "../styles"
+import axios from "./axios"
 
 
 const TinderCards = () => {
-    const [people, setPeople] = useState([
-        {
-            name: "Elon Musk",
-            url: "https://upload.wikimedia.org/wikipedia/commons/3/34/Elon_Musk_Royal_Society_%28crop2%29.jpg"
-        },
-        {
-            name: "Jeff Bezos",
-            url: "https://upload.wikimedia.org/wikipedia/commons/6/6c/Jeff_Bezos_at_Amazon_Spheres_Grand_Opening_in_Seattle_-_2018_%2839074799225%29_%28cropped%29.jpg"
+    const [people, setPeople] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+            const req = await axios.get("http://localhost:8001/tinder/cards")
+            setPeople(req.data)
         }
-    ]);
+        fetchData()
+    }, [])
+
+    console.log(people)
 
     // const [lastDirection, setLastDirection] = useState(false)
 
@@ -39,7 +41,7 @@ const TinderCards = () => {
                     >
                         <div
                             className="card"
-                            style={{backgroundImage: `url(${person.url})` }}>
+                            style={{backgroundImage: `url(${person.imgUrl})` }}>
                             <h3> {person.name} </h3>
                         </div>
                     </TinderCard>
