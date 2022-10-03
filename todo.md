@@ -1,7 +1,8 @@
 [x] Header
 [x] TinderCards
-[] SwipeButtons
-[] MongoDb
-[] Mongoose
-[] NodeJs
-[] Express
+[x] SwipeButtons
+[x] MongoDb
+[x] Mongoose
+[x] NodeJs
+[x] Express
+[x] Heroku deployment
